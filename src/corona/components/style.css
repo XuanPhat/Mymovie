@@ -1,0 +1,27 @@
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.global__corona {
+	width: 100%;
+	min-height: 200px;
+	display: flex;
+	justify-content: center;
+}
+.global__item {
+	width: 23.33%;
+	border: thin solid #ccc;
+}
+table {
+	border-collapse: collapse;
+	justify-content: center;
+	display: flex;
+}
+table th {
+	margin: 0;
+	padding: 0 50px;
+	border: 1px solid black;
+}

@@ -1,0 +1,113 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(to right top, #f8c46e, #fabe71, #fbb874, #fbb378, #faae7c);
+}
+.todo_parent {
+	min-height: 50vh;
+}
+.todo_parent h3 {
+	font-size: 5rem;
+	color: white;
+}
+.input_todo {
+	width: 500px;
+	height: 50px;
+	font-size: 30px;
+	padding-left: 12px;
+}
+input {
+	outline: none;
+	border: none;
+}
+.input_parent {
+	width: 448px;
+	height: 50px;
+	background-color: #ffffff;
+	display: flex;
+	align-items: center;
+}
+p {
+	margin-bottom: 0;
+}
+.todo_plus {
+	width: 30px;
+	height: 25px;
+	background-color: #fe6f47;
+	margin-right: 9px;
+	border-radius: 3px;
+}
+.plus {
+	font-size: 30px;
+	color: #fe6f47;
+	margin-right: 9px;
+}
+.todo_add_delete {
+	width: auto;
+	padding: 0 12px;
+	height: 50px;
+	background-color: white;
+	display: flex;
+	align-items: center;
+}
+.todo_list {
+	margin-top: 30px;
+	display: block;
+	align-items: center;
+}
+
+#box_todo {
+	margin-top: 10px;
+	display: flex;
+	width: 100%;
+}
+.todo_add_delete h4 {
+	font-size: 20px;
+}
+.confirmed {
+	width: 50px;
+	height: 50px;
+	border: none;
+	background-color: #0bd3a2;
+}
+
+.confirmed .icon_confirm {
+	font-size: 20px;
+	color: white;
+}
+.deleted {
+	width: 50px;
+	height: 50px;
+	border: none;
+	background-color: #fe6f47;
+}
+.deleted .icon_bin {
+	font-size: 18px;
+	color: white;
+}
+.all {
+	transform: translateY(8rem) rotateZ(20deg);
+	transition: 1s;
+	opacity: 0;
+}
+.Formparent {
+	display: flex;
+}
+#Dropdown_todo {
+	margin-left: 50px;
+	color: #fe6f47;
+}
+select {
+	-webkit-appearance: none;
+	cursor: pointer;
+
+	outline: none;
+	border: none;
+}
+
+.line {
+	text-decoration: line-through;
+	opacity: 0.5;
+}
