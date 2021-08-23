@@ -1,18 +1,18 @@
-import React from 'react';
-import { Row, Col, Skeleton } from 'antd';
-import { useDispatch } from 'react-redux';
-import * as actions from '../../actions';
-import Featured from './components/Featured';
-import TopSelling from './components/TopSelling';
-import Latest from './components/Latest';
-import { getLoadingProduct } from '../../reselect/reselect';
-import { getDataProducts } from '../../reselect/reselect';
-import LayoutShopping from '../../components/Layout';
-import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-import { helpers } from '../../helpers/common';
-import Product from './components/Product';
-import './style.css';
+import React from "react";
+import { Row, Col, Skeleton } from "antd";
+import { useDispatch } from "react-redux";
+import * as actions from "../../actions";
+import Featured from "./components/Featured";
+import TopSelling from "./components/TopSelling";
+import Latest from "./components/Latest";
+import { getLoadingProduct } from "../../reselect/reselect";
+import { getDataProducts } from "../../reselect/reselect";
+import LayoutShopping from "../../components/Layout";
+import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
+import { helpers } from "../../helpers/common";
+import HeaderImage from "./components/HeaderImage";
+import "./style.css";
 const HomeShopping = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -22,7 +22,7 @@ const HomeShopping = () => {
   const { loading, dataProduct } = useSelector(
     createStructuredSelector({
       loading: getLoadingProduct,
-      dataProduct: getDataProducts
+      dataProduct: getDataProducts,
     })
   );
   if (loading) {
@@ -42,10 +42,10 @@ const HomeShopping = () => {
       </div> */}
       <Row>
         <Col span={24}>
-          {/* <Featured />
+          <HeaderImage />
+          <Featured />
           <TopSelling />
-          <Latest /> */}
-          <Product />
+          <Latest />
         </Col>
       </Row>
     </LayoutShopping>

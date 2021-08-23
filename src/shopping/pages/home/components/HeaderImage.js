@@ -1,17 +1,16 @@
-import React from 'react';
-import { Row, Col, Image, Skeleton } from 'antd';
-import '../../../styles/product.css';
-import { Hidden } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { getDataProductLatest } from '../../../reselect/reselect';
-import { helpers } from '../../../helpers/common';
-import ProductCart from './Card';
-import logo_header from '../../../img/hinhnenpet.jpg';
+import React from "react";
+import { Row, Col, Image, Skeleton } from "antd";
+import "../../../styles/product.css";
+import { useSelector } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { getDataProductLatest } from "../../../reselect/reselect";
+import { helpers } from "../../../helpers/common";
+import ProductCart from "./Card";
+import logo_header from "../../../img/hinhnenpet.jpg";
 const Product = () => {
   const { latest } = useSelector(
     createStructuredSelector({
-      latest: getDataProductLatest
+      latest: getDataProductLatest,
     })
   );
   if (helpers.isEmptyObject(latest)) {
@@ -19,14 +18,14 @@ const Product = () => {
   }
 
   return (
-    <>
+    <div>
       <Row>
         <Col span={24}>
           <div className="container_image_header">
             <img
               src={logo_header}
               alt="Error_image"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
         </Col>
@@ -34,14 +33,13 @@ const Product = () => {
           <div className="heading_text_center">
             <h4>NEW ARRIVAL</h4>
             <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              faucibus maximus vehicula. Sed feugiat, tellus vel tristique
-              posuere, diam
+              shop Chó Mèo gần đây, shop Chó Mèo Đà Nẵng,, phụ kiện chó mèo Đà
+              Nẵng, Pet shop Đà Nẵng, Cát Mèo Đà Nẵng,Đà Nẵng Pet Shop
             </span>
           </div>
         </Col>
-        <Col span={24}>
-          <Row>
+        {/* <Col span={18} offset={3}>
+          <Row style={{ width: "100%" }}>
             {latest.map((item, index) => (
               <Col
                 sm={12}
@@ -54,9 +52,9 @@ const Product = () => {
               </Col>
             ))}
           </Row>
-        </Col>
+        </Col> */}
       </Row>
-    </>
+    </div>
   );
 };
 

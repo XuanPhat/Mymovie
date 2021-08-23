@@ -1,23 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { Col, Row, Skeleton } from 'antd';
-import { getDataProductTopSelling } from '../../../reselect/reselect';
-import CardProduct from './Card';
-import { helpers } from '../../../helpers/common';
+import React from "react";
+import { useSelector } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { Col, Row, Skeleton } from "antd";
+import { getDataProductTopSelling } from "../../../reselect/reselect";
+import CardProduct from "./Card";
+import { helpers } from "../../../helpers/common";
 const TopSelling = () => {
   const { TopSelling } = useSelector(
     createStructuredSelector({
-      TopSelling: getDataProductTopSelling
+      TopSelling: getDataProductTopSelling,
     })
   );
   if (helpers.isEmptyObject(TopSelling)) {
     return <Skeleton active />;
   }
   return (
-    <Row style={{ margin: '30px 0px' }}>
+    <Row style={{ margin: "30px 0px" }}>
       <Col span={24}>
-        <h3 style={{ textAlign: 'center', fontSize: 25 }}> TopSelling</h3>
+        <h3 style={{ textAlign: "center", fontSize: 25 }}> CORGI</h3>
         <Row>
           {TopSelling.map((item, key) => (
             <Col sm={12} md={6} key={key}>

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Card, Row, Col } from 'antd';
-import { Link } from 'react-router-dom';
-import slugify from 'react-slugify';
-import NumberFormat from 'react-number-format';
-import { Image } from 'antd';
-import '../../../styles/product.css';
-import { getDataProductDetail } from '../../../reselect/reselect';
-const { Meta } = Card;
+import React from "react";
+import { Card, Row, Col } from "antd";
+import { Link } from "react-router-dom";
+import slugify from "react-slugify";
+import NumberFormat from "react-number-format";
+import { Image } from "antd";
+import "../../../styles/product.css";
+// import { getDataProductDetail } from '../../../reselect/reselect';
+// const { Meta } = Card;
 const CardProduct = ({ data }) => {
   return (
     // <Row>
@@ -49,29 +49,27 @@ const CardProduct = ({ data }) => {
       <Col
         span={24}
         style={{
-          border: '1px solid #d1d5db',
-          overflow: 'hidden'
+          border: "1px solid #d1d5db",
+          overflow: "hidden",
         }}
       >
         <Link to={`/product/${slugify(data.name)}/${data.id}`}>
           <div className="container_product">
-            <Image
-              width={377}
-              src={data.image}
-              preview={false}
-              className="Image"
-            />
-
+            <Image src={data.image} preview={false} className="Image" />
             <div className="backgroud_hidden"></div>
             <span className="Price">
-              <small>$</small>
-              {data.price}
+              <NumberFormat
+                value={data.price}
+                displayType={"text"}
+                thousandSeparator={true}
+                suffix=" ₫"
+              />
             </span>
           </div>
         </Link>
         <div className="description_product">
           <h3>{data.name}</h3>
-          <p>Lorem ipsum dolor sit amet</p>
+          {/* <p>Lorem ipsum dolor sit amet</p> */}
         </div>
       </Col>
     </Row>

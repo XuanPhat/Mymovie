@@ -1,12 +1,10 @@
-import React from 'react';
-import { Layout } from 'antd';
-import HeaderShopping from './partials/Header';
-import SideBar from './partials/SideBar';
-import BreadcrumbShopping from './partials/Breadcrumb';
-import FooterShopping from './partials/Footer';
-import './style.css';
+import React from "react";
+import { Layout } from "antd";
+import HeaderShopping from "./partials/Header";
+import FooterShopping from "./partials/Footer";
+import "./style.css";
 const { Content } = Layout;
-const LayoutShopping = props => {
+const LayoutShopping = (props) => {
   console.log(props);
   return (
     <Layout>
@@ -27,7 +25,7 @@ const LayoutShopping = props => {
               // padding: 24,
 
               minHeight: 180,
-              marginTop: 80
+              marginTop: 80,
             }}
           >
             {props.children}
