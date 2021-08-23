@@ -1,7 +1,5 @@
-import React from 'react';
-import RouteMovie from './routes/index';
-function App() {
-	return <RouteMovie />;
+import React from "react";
+import RouteMovies from "./routes/index";
+export default function RouteMovie() {
+  return <RouteMovies />;
 }
-
-export default App;

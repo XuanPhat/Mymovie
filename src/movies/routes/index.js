@@ -1,31 +1,84 @@
-import PopularmoviesPage from '../pages/popularMovies/index';
-import SearchmoviesPage from '../pages/searchMovies/index';
-import Detailmovie from '../pages/detailmovie/index';
-import Login from '../pages/login/index';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React from 'react';
-const RouteMovie = () => {
-	return (
-		<Router>
-			<Switch>
-				{/* Duong dan mac dinh */}
-				<Route path="/" exact>
-					<PopularmoviesPage />
-				</Route>
-				<Route path="/popular-movie">
-					<PopularmoviesPage />
-				</Route>
-				<Route path="/search-movie">
-					<SearchmoviesPage />
-				</Route>
-				<Route path="/movies/:slug~:id">
-					<Detailmovie />
-				</Route>
-				<Route path="/movie/login">
-					<Login />
-				</Route>
-			</Switch>
-		</Router>
-	);
+import { React, lazy, Suspense } from "react";
+import { Skeleton } from "antd";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { helper } from "../helpers/common";
+// import PopularMoviesPage from "../pages/popularMovies";
+// import SearchMoviesPage from "../pages/searchMovies";
+// import DetailMoviePage from "../pages/detailMovies";
+
+const PopularMoviesPage = lazy(() => import("../pages/popularMovies/index"));
+const SearchMoviesPage = lazy(() => import("../pages/searchMovies/index"));
+const DetailMoviePage = lazy(() => import("../pages/detailMovies/"));
+const LoginMoviePage = lazy(() => import("../pages/loginMovies"));
+function PrivateRouteLogin({ children, ...rest }) {
+  let auth = helper.fakeAuthLogin();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth ? (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location },
+            }}
+          />
+        ) : (
+          children
+        )
+      }
+    />
+  );
+}
+
+function PrivateRouteMovies({ children, ...rest }) {
+  let auth = helper.fakeAuthLogin();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/movie/login",
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+const RouteMovies = () => {
+  return (
+    <Router>
+      <Suspense fallback={<Skeleton active />}>
+        <Switch>
+          <Route path="/" exact>
+            <PopularMoviesPage />
+          </Route>
+          <Route path="/popular-movie">
+            <PopularMoviesPage />
+          </Route>
+          <Route path="/search-movie">
+            <SearchMoviesPage />
+          </Route>
+          <PrivateRouteMovies path="/movie/:slug~:id">
+            <DetailMoviePage />
+          </PrivateRouteMovies>
+          <PrivateRouteLogin path="/movie/login">
+            <LoginMoviePage />
+          </PrivateRouteLogin>
+        </Switch>
+      </Suspense>
+    </Router>
+  );
 };
-export default React.memo(RouteMovie);
+export default RouteMovies;

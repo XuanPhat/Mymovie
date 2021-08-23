@@ -1,8 +1,11 @@
-import React from 'react';
-import { Layout } from 'antd';
+import React from "react";
+import { Layout } from "antd";
 const { Footer } = Layout;
-const footer = () => {
-	return <Footer style={{ textAlign: 'center' }}>My movie 2021</Footer>;
+const FooterMovies = () => {
+  return (
+    <Footer style={{ textAlign: "center" }}>
+      Copyright ©2021 Created by MrKatsu
+    </Footer>
+  );
 };
-
-export default React.memo(footer);
+export default React.memo(FooterMovies);

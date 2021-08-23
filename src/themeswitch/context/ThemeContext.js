@@ -1,6 +1,21 @@
-import React from 'react';
-const ThemeContext = React.createContext({
-	dark: false,
-	toggle: () => {}
-});
-export default ThemeContext;
+import React, { Component } from 'react'
+
+export default class Themecontext extends Component {
+   
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             dark:false;
+        }
+    }
+    
+
+    render() {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
+}

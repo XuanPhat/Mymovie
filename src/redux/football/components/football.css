@@ -1,0 +1,24 @@
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+.logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ant-col-8 {
+  display: flex;
+  flex: 0 0 33.33333333%;
+  max-width: 33.33333333%;
+  align-items: center;
+  justify-content: center;
+}
+.ant-image {
+  margin-left: 12px;
+  position: relative;
+  display: inline-block;
+}

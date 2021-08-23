@@ -1,20 +1,21 @@
-import HeaderMovies from './partials/Header';
-import FooterMovies from './partials/Footer';
-import { Layout } from 'antd';
-import './movies.css';
-import React from 'react';
-import Proptypes from 'prop-types';
+import React from "react";
+import Header from "../components/partials/Header";
+import Footer from "../components/partials/Footer";
+import "./movies.css";
+import { Layout } from "antd";
 const { Content } = Layout;
-function LayoutMovies(props) {
-	return (
-		<Layout className="layout">
-			<HeaderMovies />
-			<Content style={{ padding: '0 50px' }}>{props.children}</Content>
-			<FooterMovies />
-		</Layout>
-	);
-}
-LayoutMovies.propTypes = {
-	children: Proptypes.node.isRequired
+
+const LayoutMovies = (props) => {
+  return (
+    <Layout>
+      <Header />
+
+      <Content style={{ padding: "0 50px" }}>
+        {/* noi dung */}
+        {props.children}
+      </Content>
+      <Footer />
+    </Layout>
+  );
 };
 export default React.memo(LayoutMovies);
