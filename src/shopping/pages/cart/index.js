@@ -33,6 +33,20 @@ const CartShopping = () => {
   const handlechangeQty = (e) => {
     console.log(e.target.value);
   };
+  if (productCarts.length === 0) {
+    return (
+      <LayoutShopping>
+        <img
+          src={logo_header}
+          alt="Error_image"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <h1 style={{ textAlign: "center" }}>
+          Bạn chưa có sản phẩm trong giỏ hàng
+        </h1>
+      </LayoutShopping>
+    );
+  }
   return (
     <LayoutShopping>
       <div className="container_image_header">
