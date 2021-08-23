@@ -5,46 +5,8 @@ import slugify from "react-slugify";
 import NumberFormat from "react-number-format";
 import { Image } from "antd";
 import "../../../styles/product.css";
-// import { getDataProductDetail } from '../../../reselect/reselect';
-// const { Meta } = Card;
 const CardProduct = ({ data }) => {
   return (
-    // <Row>
-    //   <Col span={20} offset={2}>
-    //     {/* <Link to={`/product/${slugify(data.name)}/${data.id}`}>
-    //       <Card
-    //         hoverable
-    //         style={{ marginTop: '15px' }}
-    //         cover={
-    //           <img alt={data.name} src={data.image} style={{ marginTop: 20 }} />
-    //         }
-    //       >
-    //         <Meta title={data.name} />
-    //         <NumberFormat
-    //           value={data.price}
-    //           displayType={'text'}
-    //           thousandSeparator={true}
-    //           suffix=" ₫"
-    //         />
-    //       </Card>
-    //     </Link> */}
-    //     <Card
-    //         hoverable
-    //         style={{ marginTop: '15px' }}
-    //         cover={
-    //           <img alt={data.name} src={data.image} style={{ marginTop: 20 }} />
-    //         }
-    //       >
-    //         <Meta title={data.name} />
-    //         <NumberFormat
-    //           value={data.price}
-    //           displayType={'text'}
-    //           thousandSeparator={true}
-    //           suffix=" ₫"
-    //         />
-    //       </Card>
-    //   </Col>
-    // </Row>
     <Row>
       <Col
         span={24}
