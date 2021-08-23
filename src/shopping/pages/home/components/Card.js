@@ -50,24 +50,26 @@ const CardProduct = ({ data }) => {
         span={24}
         style={{
           border: '1px solid #d1d5db',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          position: 'relative'
         }}
+        className="card_product_header"
       >
         <Link to={`/product/${slugify(data.name)}/${data.id}`}>
           <div className="container_product">
             <Image
-              width={377}
+              width={277}
               src={data.image}
               preview={false}
               className="Image"
             />
 
             <div className="backgroud_hidden"></div>
-            <span className="Price">
-              <small>$</small>
-              {data.price}
-            </span>
           </div>
+          <span className="Price">
+            <small>$</small>
+            {data.price}
+          </span>
         </Link>
         <div className="description_product">
           <h3>{data.name}</h3>

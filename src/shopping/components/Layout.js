@@ -24,8 +24,6 @@ const LayoutShopping = props => {
           <Content
             className="site-layout-background"
             style={{
-              // padding: 24,
-
               minHeight: 180,
               marginTop: 80
             }}

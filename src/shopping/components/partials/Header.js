@@ -19,7 +19,10 @@ const HeaderShopping = () => {
 
         <div className="menu_icon">
           <ul>
-            <li>HOME</li>
+            <Link to="/">
+              <li>HOME</li>
+            </Link>
+
             <li>PAGES</li>
           </ul>
           <div className="icon">

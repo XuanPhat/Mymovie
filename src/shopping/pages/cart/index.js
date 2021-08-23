@@ -6,13 +6,12 @@ import { Row, Col, Image } from 'antd';
 import { removetCartAction } from '../../actions';
 import { changeQuantityCartAction } from '../../actions';
 import NumberFormat from 'react-number-format';
-import '../home/style.css';
+// import '../home/style.css';
 import '../../../shopping/styles/product.css';
-
+import { CloseCircleOutlined } from '@ant-design/icons';
 const CartShopping = () => {
   const productCarts = useSelector(state => state.reducerCart.shoppingCart);
   console.log(productCarts.map(item => console.log(item)));
-
   const dispatch = useDispatch();
   const [qty, setNumberQty] = useState([]);
   const getTotal = () => {
@@ -115,6 +114,9 @@ const CartShopping = () => {
                 <h6>TOTAL</h6>{' '}
               </Col>
             </Row> */}
+            {productCarts.length === 0 && (
+              <h3 style={{ marginTop: 20 }}>No product in cart</h3>
+            )}
             {productCarts.map((item, index) => (
               <div key={index}>
                 <Row>
@@ -162,7 +164,14 @@ const CartShopping = () => {
                   >
                     <select
                       id="mySelect"
-                      onChange={handlechangeQty}
+                      onChange={e =>
+                        dispatch(
+                          changeQuantityCartAction(
+                            e.target.value,
+                            item.shoppingCart.id
+                          )
+                        )
+                      }
                       style={{
                         height: 30,
                         width: 68,
@@ -198,10 +207,17 @@ const CartShopping = () => {
                     }}
                   >
                     <span className="price">
-                      <small>$</small>290
+                      <small>$</small>
+                      {item.shoppingCart.price * item.shoppingCart.quantity}
                     </span>
                   </Col>
-                  <Col style={{ display: 'flex', alignItems: 'center' }}></Col>
+                  <Col style={{ display: 'flex', alignItems: 'center' }}>
+                    <CloseCircleOutlined
+                      onClick={e => {
+                        dispatch(removetCartAction(item.shoppingCart.id, 1));
+                      }}
+                    />
+                  </Col>
                 </Row>
               </div>
             ))}

@@ -12,7 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { helpers } from '../../helpers/common';
 import Product from './components/Product';
-import './style.css';
+// import './style.css';
 const HomeShopping = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
