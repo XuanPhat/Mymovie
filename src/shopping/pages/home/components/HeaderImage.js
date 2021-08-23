@@ -33,26 +33,11 @@ const Product = () => {
           <div className="heading_text_center">
             <h4>NEW ARRIVAL</h4>
             <span>
-              shop Chó Mèo gần đây, shop Chó Mèo Đà Nẵng,, phụ kiện chó mèo Đà
+              shop Chó Mèo gần đây, shop Chó Mèo Đà Nẵng, phụ kiện chó mèo Đà
               Nẵng, Pet shop Đà Nẵng, Cát Mèo Đà Nẵng,Đà Nẵng Pet Shop
             </span>
           </div>
         </Col>
-        {/* <Col span={18} offset={3}>
-          <Row style={{ width: "100%" }}>
-            {latest.map((item, index) => (
-              <Col
-                sm={12}
-                md={12}
-                xs={24}
-                lg={6}
-                // span={6}
-              >
-                <ProductCart data={item} key={index} />
-              </Col>
-            ))}
-          </Row>
-        </Col> */}
       </Row>
     </div>
   );
