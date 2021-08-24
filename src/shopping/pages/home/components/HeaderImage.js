@@ -1,11 +1,10 @@
 import React from "react";
-import { Row, Col, Image, Skeleton } from "antd";
+import { Row, Col, Skeleton } from "antd";
 import "../../../styles/product.css";
 import { useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { getDataProductLatest } from "../../../reselect/reselect";
 import { helpers } from "../../../helpers/common";
-import ProductCart from "./Card";
 import logo_header from "../../../img/hinhnenpet.jpg";
 const Product = () => {
   const { latest } = useSelector(

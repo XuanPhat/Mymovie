@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Layout, Image } from "antd";
+import { Layout, Image } from "antd";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../img/pet-shop.jpg";
@@ -22,7 +22,7 @@ const HeaderShopping = () => {
         <div className="menu_icon">
           <ul>
             <li>HOME</li>
-            <li>PAGES</li>
+            <li>CATEGORY</li>
           </ul>
           <div className="icon">
             <div className="icon_item">

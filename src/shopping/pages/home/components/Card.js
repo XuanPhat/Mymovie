@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
+import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import slugify from "react-slugify";
 import NumberFormat from "react-number-format";
@@ -7,7 +7,7 @@ import { Image } from "antd";
 import "../../../styles/product.css";
 const CardProduct = ({ data }) => {
   return (
-    <Row>
+    <Row sm={12} md={6} xs={2}>
       <Col
         span={24}
         style={{
