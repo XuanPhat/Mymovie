@@ -7,6 +7,10 @@ let getDataProducts = {
       image:
         "https://matpetfamily.com/wp-content/uploads/2021/02/141761959_1886256061522469_7166974700884504968_o-270x270.jpg",
       price: 24900000,
+      imageList: [
+        "https://matpetfamily.com/wp-content/uploads/2019/12/72835561_1437995923015154_7605397220103290880_n-270x270.jpg",
+        "https://matpetfamily.com/wp-content/uploads/2020/05/95168083_1619595481521863_3931317646317846528_o-270x270.jpg",
+      ],
     },
     {
       id: 14,

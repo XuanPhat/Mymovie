@@ -17,7 +17,12 @@ const CardProduct = ({ data }) => {
       >
         <Link to={`/product/${slugify(data.name)}/${data.id}`}>
           <div className="container_product">
-            <Image src={data.image} preview={false} className="Image" />
+            <Image
+              style={{ borderRadius: "5%" }}
+              src={data.image}
+              preview={false}
+              className="Image"
+            />
             <div className="backgroud_hidden"></div>
             <span className="Price">
               <NumberFormat
