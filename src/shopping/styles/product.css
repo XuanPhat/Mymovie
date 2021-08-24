@@ -1,18 +1,12 @@
-.card_product_header:hover .Price {
-  top: 20px;
-  right: 20px;
-  position: absolute;
-}
 .container_product {
   display: flex;
   justify-content: center;
   cursor: pointer;
-  transition: 0.5s ease-in-out;
+  transition: 1s ease-in-out;
   overflow: hidden;
-  position: relative;
 }
 .Image {
-  margin-top: 69px;
+  margin-top: 20px;
 }
 h3 {
   margin: 0;
@@ -20,20 +14,12 @@ h3 {
 p {
   margin: 0;
 }
-.container_product:hover {
+.container_product:hover .Image {
   transform: scale(1.2);
 }
 .description_product h3 {
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: #2d3a4b;
-  text-transform: uppercase;
+  font-size: 18px;
   padding-top: 20px;
-}
-.description_product p {
-  font-size: 14px;
-  margin: 0px;
 }
 .description_product {
   /* text-align: center; */
@@ -59,6 +45,7 @@ p {
 
 .backgroud_hidden {
   position: absolute;
+
   top: 0;
   right: 0;
   width: 100%;
@@ -69,11 +56,13 @@ p {
 }
 .container_product:hover .backgroud_hidden {
   position: absolute;
+
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 21, 0.75);
+
   opacity: 1;
 }
 .Price {
@@ -82,10 +71,15 @@ p {
   right: 20px;
   font-weight: bold;
   font-size: 18px;
-  transition: 0.5s ease-in-out;
+  transition: 0.4s ease-in-out;
+
   /* opacity: 0; */
-  color: black;
-  /* z-index: 30; */
+}
+.container_product:hover .Price {
+  /* position: absolute; */
+  top: 20px;
+  display: inline-block;
+  /* opacity: 1; */
 }
 
 .Price small {
@@ -95,7 +89,7 @@ p {
 }
 .container_image_header {
   width: 100%;
-  height: 851px;
+  height: 100%;
 }
 .heading_text_center {
   margin: 0 auto;
@@ -103,14 +97,7 @@ p {
   padding-top: 80px;
   padding-bottom: 80px;
 }
-.heading_text_center h4 {
-  font-weight: bold;
-  color: #2d3a4b;
-  font-size: 26px;
-  margin: 0px;
-  margin-bottom: 20px;
-  letter-spacing: 5px;
-}
+
 .heading_text_center span {
   display: inline-block;
   width: 30%;
@@ -124,16 +111,14 @@ p {
   width: 100%;
   height: 608px;
   min-height: 610px;
-  background-image: url('https://demos.webicode.com/html/eco-shop-html/Single_Img_Demo/images/sub-bnr-bg.jpg');
 }
 h6 {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: normal;
   margin: 0;
 }
 .Shopping_cart {
   margin-top: 99px;
-  margin-bottom: 162px;
 }
 .border_bottom {
   width: 1141px;
@@ -144,7 +129,6 @@ h6 {
   letter-spacing: 2px;
   color: #2d3a4b;
   margin-bottom: 0px;
-  font-size: 20px;
 }
 .Shopping_cart .price {
   font-size: 18px;
@@ -174,64 +158,4 @@ h6 {
 }
 .menu_qty:hover {
   background-color: yellow;
-}
-.container_product_detail {
-}
-.container_product_detail .image_detail {
-  width: 663px;
-  height: 659px;
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container_product_detail p {
-  font-weight: 400;
-  color: #6f6f6f;
-  line-height: 26px;
-  text-rendering: optimizeLegibility;
-}
-.container_product_detail h4 {
-  color: #2d3a4b;
-  letter-spacing: 2px;
-  font-size: 24px;
-}
-.container_product_detail .price {
-  font-size: 18px;
-  font-weight: bold;
-  z-index: 9;
-  display: inline-block;
-  width: 100%;
-  text-align: left;
-
-  color: #2d3a4b;
-}
-.container_product_detail .price small {
-  font-size: 12px;
-  display: inline-block;
-  vertical-align: top;
-}
-.container_product_detail p {
-  font-weight: 400;
-  color: #6f6f6f;
-  line-height: 26px;
-  text-rendering: optimizeLegibility;
-}
-.container_product_detail button {
-  width: 215px;
-  height: 46px;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: #2d3a4b;
-  outline: none;
-  cursor: pointer;
-  border: none;
-  color: #fff;
-  transition: 0.3s ease-in-out;
-  margin-top: 20px;
-}
-
-.container_product_detail button:hover {
-  background-color: #ffe115;
-  color: #ab4e52;
 }

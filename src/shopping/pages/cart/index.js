@@ -6,12 +6,14 @@ import { Row, Col, Image } from 'antd';
 import { removetCartAction } from '../../actions';
 import { changeQuantityCartAction } from '../../actions';
 import NumberFormat from 'react-number-format';
-// import '../home/style.css';
+import '../home/style.css';
 import '../../../shopping/styles/product.css';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import logo_header from '../../img/hinhnenpet.jpg';
+
 const CartShopping = () => {
   const productCarts = useSelector(state => state.reducerCart.shoppingCart);
   console.log(productCarts.map(item => console.log(item)));
+
   const dispatch = useDispatch();
   const [qty, setNumberQty] = useState([]);
   const getTotal = () => {
@@ -31,104 +33,60 @@ const CartShopping = () => {
   const handlechangeQty = e => {
     console.log(e.target.value);
   };
+  if (productCarts.length === 0) {
+    return (
+      <LayoutShopping>
+        <img
+          src={logo_header}
+          alt="Error_image"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <h1 style={{ textAlign: 'center' }}>
+          Bạn chưa có sản phẩm trong giỏ hàng
+        </h1>
+      </LayoutShopping>
+    );
+  }
   return (
     <LayoutShopping>
-      <div className="image_header_shoppingcart"></div>
+      <div className="container_image_header">
+        <img
+          src={logo_header}
+          alt="Error_image"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </div>
+
       <div className="Shopping_cart">
         <Row>
-          <Col span={24} offset={6} style={{ width: 1137 }}>
-            <Row>
-              <Col style={{ width: 197 }}>
+          <Col span={20} offset={2}>
+            <Row style={{ display: 'flex', justifyContent: 'space-around' }}>
+              <Col>
                 <h6>PRODUCTS</h6>{' '}
               </Col>
-              <Col style={{ width: 415 }}>
+              <Col>
                 <h6>NAME</h6>{' '}
               </Col>
-              <Col style={{ width: 154 }}>
+              <Col>
                 <h6>PRICE</h6>
               </Col>
-              <Col style={{ width: 139 }}>
+              <Col>
                 <h6>QTY</h6>
               </Col>
-              <Col style={{ width: 117 }}>
-                <h6>TOTAL</h6>{' '}
-              </Col>
+              <Col></Col>
               <Col></Col>
             </Row>
-            {/* <Row>
-              <div className="border_bottom"></div>
-            </Row>
-            <Row style={{ marginTop: 30 }}>
-              <Col style={{ width: 197 }}>
-                <img
-                  src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-200x200.jpg"
-                  alt="error"
-                  style={{
-                    width: 172,
-                    height: 168,
-                    objectFit: 'cover'
-                  }}
-                />
-              </Col>
-              <Col
-                style={{ width: 415, display: 'flex', alignItems: 'center' }}
-              >
-                <h5>Iphone X</h5>
-              </Col>
-              <Col
-                style={{ width: 154, display: 'flex', alignItems: 'center' }}
-              >
-                <span className="price">
-                  <small>$</small>299
-                </span>
-              </Col>
-              <Col
-                style={{ width: 139, display: 'flex', alignItems: 'center' }}
-              >
-                <select
-                  id="mySelect"
-                  onChange={handlechangeQty}
-                  style={{
-                    height: 30,
-                    width: 68,
-                    outline: 'none',
-                    padding: 5,
-                    fontSize: 12,
-                    color: '#2d3a4b',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-              </Col>
-              <Col style={{ display: 'flex', alignItems: 'center' }}>
-                <h6>TOTAL</h6>{' '}
-              </Col>
-            </Row> */}
-            {productCarts.length === 0 && (
-              <h3 style={{ marginTop: 20 }}>No product in cart</h3>
-            )}
             {productCarts.map((item, index) => (
               <div key={index}>
                 <Row>
                   <div className="border_bottom"></div>
                 </Row>
-                <Row style={{ marginTop: 30 }}>
-                  <Col style={{ width: 197 }}>
+                <Row style={{ marginTop: 10, justifyContent: 'space-around' }}>
+                  <Col>
                     <img
                       src={item.shoppingCart.image}
                       alt="error"
                       style={{
-                        width: 172,
                         height: 168,
                         objectFit: 'cover'
                       }}
@@ -136,7 +94,6 @@ const CartShopping = () => {
                   </Col>
                   <Col
                     style={{
-                      width: 415,
                       display: 'flex',
                       alignItems: 'center'
                     }}
@@ -145,7 +102,6 @@ const CartShopping = () => {
                   </Col>
                   <Col
                     style={{
-                      width: 154,
                       display: 'flex',
                       alignItems: 'center'
                     }}
@@ -162,42 +118,16 @@ const CartShopping = () => {
                       alignItems: 'center'
                     }}
                   >
-                    <select
-                      id="mySelect"
-                      onChange={e =>
+                    <InputNumber
+                      min={1}
+                      max={30}
+                      value={item.shoppingCart.quantity}
+                      onChange={value => {
                         dispatch(
-                          changeQuantityCartAction(
-                            e.target.value,
-                            item.shoppingCart.id
-                          )
-                        )
-                      }
-                      style={{
-                        height: 30,
-                        width: 68,
-                        outline: 'none',
-                        padding: 5,
-                        fontSize: 12,
-                        color: '#2d3a4b',
-                        fontWeight: 'bold'
+                          changeQuantityCartAction(value, item.shoppingCart.id)
+                        );
                       }}
-                    >
-                      {/* {arrQty.forEach(index => {
-                         <option value={index}>{index}</option>;
-                       
-                        })} */}
-
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
+                    />
                   </Col>
                   <Col
                     style={{
@@ -207,17 +137,17 @@ const CartShopping = () => {
                     }}
                   >
                     <span className="price">
-                      <small>$</small>
-                      {item.shoppingCart.price * item.shoppingCart.quantity}
+                      <Button
+                        type="dashed"
+                        onClick={() =>
+                          dispatch(removetCartAction(item.shoppingCart.id, 1))
+                        }
+                      >
+                        Xóa{' '}
+                      </Button>
                     </span>
                   </Col>
-                  <Col style={{ display: 'flex', alignItems: 'center' }}>
-                    <CloseCircleOutlined
-                      onClick={e => {
-                        dispatch(removetCartAction(item.shoppingCart.id, 1));
-                      }}
-                    />
-                  </Col>
+                  <Col style={{ display: 'flex', alignItems: 'center' }}></Col>
                 </Row>
               </div>
             ))}
@@ -230,7 +160,6 @@ const CartShopping = () => {
           {productCarts.length === 0 && (
             <h1> Bạn chưa có sản phẩm trong giỏ hàng</h1>
           )}
-
           {productCarts.map((item, index) => (
             <Row
               key={index}
@@ -301,6 +230,19 @@ const CartShopping = () => {
         </Col>
       </Row> */}
       {/* <p>HEHEE</p> */}
+      <div style={{ clear: 'both' }}></div>
+      {getTotal() > 0 && (
+        <h5 style={{ float: 'right' }}>
+          <NumberFormat
+            value={getTotal()}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix=" ₫"
+            prefix="Tổng Cộng: "
+          />
+        </h5>
+      )}
+      <div style={{ clear: 'both' }}></div>
     </LayoutShopping>
   );
 };

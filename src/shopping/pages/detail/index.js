@@ -43,41 +43,7 @@ const DetailShopping = () => {
   return (
     <LayoutShopping sub_1="Detail" sub_2="Product" sub_3={slug}>
       {!loading ? (
-        <>
-          <div className="image_header_shoppingcart"></div>
-          <div className="container_product_detail">
-            <Row>
-              <Col offset={4}>
-                <Row>
-                  <Col>
-                    <div className="image_detail">
-                      <Image
-                        width={500}
-                        src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-200x200.jpg"
-                        alt="Error"
-                        preview={false}
-                      />
-                    </div>
-                  </Col>
-                  <Col style={{ width: 473, padding: '15px 33px' }}>
-                    <h4>IPHONE X</h4>
-                    <span className="price">
-                      <small>$</small>299
-                    </span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Vestibulum finibus ligula a scelerisque gravida. Nullam
-                      laoreet tortor ac maximus alique met, consectetur
-                      adipiscing elit. Vestibulum finibus ligula a scelerisque
-                      gravida. Nullam
-                    </p>
-                    <button>ADD TO CART</button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </div>
-        </>
+        <></>
       ) : (
         // <Row>
         //   <Col span={24} offset={6}>

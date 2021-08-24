@@ -11,8 +11,9 @@ import LayoutShopping from '../../components/Layout';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
 import { helpers } from '../../helpers/common';
-import Product from './components/Product';
-// import './style.css';
+import HeaderImage from './components/HeaderImage';
+import './style.css';
+
 const HomeShopping = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -42,10 +43,10 @@ const HomeShopping = () => {
       </div> */}
       <Row>
         <Col span={24}>
-          {/* <Featured />
+          <HeaderImage />
+          <Featured />
           <TopSelling />
-          <Latest /> */}
-          <Product />
+          <Latest />
         </Col>
       </Row>
     </LayoutShopping>
