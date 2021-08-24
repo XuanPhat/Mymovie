@@ -9,13 +9,12 @@ import NumberFormat from "react-number-format";
 import "../home/style.css";
 import "../../../shopping/styles/product.css";
 import logo_header from "../../img/hinhnenpet.jpg";
-
+import Checkout from "./Checkout";
 const CartShopping = () => {
   const productCarts = useSelector((state) => state.reducerCart.shoppingCart);
-  console.log(productCarts.map((item) => console.log(item)));
 
   const dispatch = useDispatch();
-  const [qty, setNumberQty] = useState([]);
+  // const [qty, setNumberQty] = useState([]);
   const getTotal = () => {
     // eslint-disable-next-line no-lone-blocks
     {
@@ -56,7 +55,6 @@ const CartShopping = () => {
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </div>
-
       <div className="Shopping_cart">
         <Row>
           <Col span={20} offset={2}>
@@ -89,6 +87,7 @@ const CartShopping = () => {
                       style={{
                         height: 168,
                         objectFit: "cover",
+                        borderRadius: "5%",
                       }}
                     />
                   </Col>
@@ -107,8 +106,15 @@ const CartShopping = () => {
                     }}
                   >
                     <span className="price">
-                      <small>$</small>
-                      {item.shoppingCart.price}
+                      <small>
+                        <NumberFormat
+                          style={{ fontSize: 20 }}
+                          value={item.shoppingCart.price}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          suffix="₫"
+                        />
+                      </small>
                     </span>
                   </Col>
                   <Col
@@ -154,83 +160,6 @@ const CartShopping = () => {
           </Col>
         </Row>
       </div>
-
-      {/* <Row>
-        <Col span={24}>
-          {productCarts.length === 0 && (
-            <h1> Bạn chưa có sản phẩm trong giỏ hàng</h1>
-          )}
-
-          {productCarts.map((item, index) => (
-            <Row
-              key={index}
-              style={{
-                margin: '15px 0px',
-                border: '1px solid #ccc',
-                padding: '10px'
-              }}
-            >
-              <Col sm={12} xs={12} md={4}>
-                <Image src={item.shoppingCart.image} />
-              </Col>
-              <Col span={10} offset={1}>
-                <h4> {item.shoppingCart.name}</h4>
-                <NumberFormat
-                  value={item.shoppingCart.price}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  suffix=" ₫"
-                  prefix="Price: "
-                />
-                <p>
-                  <NumberFormat
-                    value={item.shoppingCart.price * item.shoppingCart.quantity}
-                    displayType={'text'}
-                    thousandSeparator={true}
-                    suffix=" ₫"
-                    style={{ fontWeight: 'bold' }}
-                    prefix="Money: "
-                  />
-                </p>
-                <br />
-                <InputNumber
-                  min={1}
-                  max={30}
-                  value={item.shoppingCart.quantity}
-                  onChange={value => {
-                    dispatch(
-                      changeQuantityCartAction(value, item.shoppingCart.id)
-                    );
-                  }}
-                />
-                <Button
-                  type="dashed"
-                  onClick={() =>
-                    dispatch(removetCartAction(item.shoppingCart.id, 1))
-                  }
-                >
-                  Xóa{' '}
-                </Button>
-              </Col>
-            </Row>
-          ))}
-          <div style={{ clear: 'both' }}></div>
-          {getTotal() > 0 && (
-            <h3 style={{ float: 'right' }}>
-              <NumberFormat
-                value={getTotal()}
-                displayType={'text'}
-                style={{ color: 'red', fontWeight: 'bold' }}
-                thousandSeparator={true}
-                suffix=" ₫"
-                prefix="Tổng Cộng: "
-              />
-            </h3>
-          )}
-          <div style={{ clear: 'both' }}></div>
-        </Col>
-      </Row> */}
-      {/* <p>HEHEE</p> */}
       <div style={{ clear: "both" }}></div>
       {getTotal() > 0 && (
         <h5 style={{ float: "right" }}>
@@ -243,6 +172,9 @@ const CartShopping = () => {
           />
         </h5>
       )}
+      {/* Chỗ này import component checkout nhé cu phát */}
+      {/* https://ant.design/components/form/ */}
+      <Checkout />
       <div style={{ clear: "both" }}></div>
     </LayoutShopping>
   );
