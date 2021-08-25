@@ -12,12 +12,20 @@ import { incrementCartAction } from '../../actions/';
 import { helpers } from '../../helpers/common';
 import NumberFormat from 'react-number-format';
 import Featured from '../home/components/Featured';
+import TopSelling from '../home/components/TopSelling';
+import Lastest from '../home/components/Featured';
+
 import '../home/style.css';
+
 const DetailShopping = () => {
   const { slug, id } = useParams();
   const [image, setImage] = React.useState(null);
-  console.log(image);
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     setImage(null);
   }, [id]);
   const dispatch = useDispatch();
@@ -31,7 +39,7 @@ const DetailShopping = () => {
       loading: getLoadingProductById
     })
   );
-  console.log(dataDetail.imageList);
+  // console.log(dataDetail.imageList);
   if (helpers.isEmptyObject(dataDetail)) {
     return <Skeleton />;
   }
@@ -50,7 +58,7 @@ const DetailShopping = () => {
         <Row>
           <Col style={{ marginTop: '30px' }} span={12} offset={6}>
             <Row>
-              <Col style={{ width: 300 }}>
+              <Col style={{ width: 300 }} md={12} xs={24}>
                 <Image
                   style={{ borderRadius: '5%' }}
                   src={image ? image : dataDetail.image}
@@ -74,7 +82,8 @@ const DetailShopping = () => {
                     ))}
                 </Row>
               </Col>
-              <Col span={12} offset={1}>
+
+              <Col md={12} xs={24} lg={12}>
                 <h3 style={{ color: 'black', fontWeight: 'bold' }}>
                   {dataDetail ? dataDetail.name : null}
                 </h3>
@@ -91,7 +100,7 @@ const DetailShopping = () => {
                   </small>
                 </span>
 
-                <ul class="item-owner">
+                <ul className="item-owner">
                   <li>
                     Designer :<span> MrKatsu</span>
                   </li>
@@ -121,30 +130,29 @@ const DetailShopping = () => {
                 </Button>
               </Col>
 
-              {/* <Col style={{ width: 50 }}>
-                <button
-                  onClick={() => {
-                    setImage(
-                      "https://matpetfamily.com/wp-content/uploads/2021/07/198525099_1996475307167210_4731572586786937788_n.jpg"
-                    );
-                  }}
-                >
-                  <img
-                    src={
-                      "https://matpetfamily.com/wp-content/uploads/2021/07/201800295_1996475300500544_4108613376308709858_n-150x150.jpg"
-                    }
-                    alt=""
-                    style={{ width: 50 }}
-                  />
-                </button>
-              </Col> */}
+              <Row>
+                {dataDetail.imageList?.length > 0 &&
+                  dataDetail.imageList.map((item, key) => (
+                    <Row sm={12} md={6} key={key}>
+                      <button
+                        onClick={() => {
+                          setImage(item);
+                        }}
+                      >
+                        <img src={item} alt="" style={{ width: 50 }} />
+                      </button>
+                    </Row>
+                  ))}
+              </Row>
             </Row>
           </Col>
         </Row>
       ) : (
         <Skeleton />
       )}
-      <Featured />
+      {dataDetail.cate_id === 'corgi' && <TopSelling />}
+      {dataDetail.cate_id === 'husky' && <Featured />}
+      {dataDetail.cate_id === 'samoyed' && <Lastest />}
     </LayoutShopping>
   );
 };
