@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import LayoutShopping from "../../components/Layout";
-import { Button, InputNumber } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Image } from "antd";
-import { removetCartAction } from "../../actions";
-import { changeQuantityCartAction } from "../../actions";
-import NumberFormat from "react-number-format";
-import "../home/style.css";
-import "../../../shopping/styles/product.css";
-import logo_header from "../../img/hinhnenpet.jpg";
-import Checkout from "./Checkout";
+import React, { useState } from 'react';
+import LayoutShopping from '../../components/Layout';
+import { Button, InputNumber } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col, Image } from 'antd';
+import { removetCartAction } from '../../actions';
+import { changeQuantityCartAction } from '../../actions';
+import NumberFormat from 'react-number-format';
+import '../home/style.css';
+import '../../../shopping/styles/product.css';
+import logo_header from '../../img/hinhnenpet.jpg';
+import Checkout from './Checkout';
 const CartShopping = () => {
-  const productCarts = useSelector((state) => state.reducerCart.shoppingCart);
+  const productCarts = useSelector(state => state.reducerCart.shoppingCart);
 
   const dispatch = useDispatch();
   // const [qty, setNumberQty] = useState([]);
@@ -29,7 +29,7 @@ const CartShopping = () => {
     }
   };
 
-  const handlechangeQty = (e) => {
+  const handlechangeQty = e => {
     console.log(e.target.value);
   };
   if (productCarts.length === 0) {
@@ -38,9 +38,9 @@ const CartShopping = () => {
         <img
           src={logo_header}
           alt="Error_image"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
-        <h1 style={{ textAlign: "center" }}>
+        <h1 style={{ textAlign: 'center' }}>
           Bạn chưa có sản phẩm trong giỏ hàng
         </h1>
       </LayoutShopping>
@@ -52,57 +52,64 @@ const CartShopping = () => {
         <img
           src={logo_header}
           alt="Error_image"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
       <div className="Shopping_cart">
         <Row>
-          <Col span={20} offset={2}>
-            <Row style={{ display: "flex", justifyContent: "space-around" }}>
-              <Col>
-                <h6>PRODUCTS</h6>{" "}
+          <Col span={24} offset={4}>
+            <Row
+            // style={{ display: 'flex', justifyContent: 'space-around' }}
+            >
+              <Col span={3}>
+                <h6>PRODUCTS</h6>
               </Col>
-              <Col>
-                <h6>NAME</h6>{" "}
+              <Col span={5}>
+                <h6>NAME</h6>
               </Col>
-              <Col>
+              <Col span={3}>
                 <h6>PRICE</h6>
               </Col>
-              <Col>
+              <Col span={2}>
                 <h6>QTY</h6>
               </Col>
-              <Col></Col>
-              <Col></Col>
+              <Col span={2}>
+                <h6>Total</h6>
+              </Col>
+              {/* <Col></Col>
+              <Col></Col> */}
             </Row>
             {productCarts.map((item, index) => (
               <div key={index}>
                 <Row>
                   <div className="border_bottom"></div>
                 </Row>
-                <Row style={{ marginTop: 10, justifyContent: "space-around" }}>
-                  <Col>
+                <Row style={{ marginTop: 20, textAlign: 'center' }}>
+                  <Col span={3}>
                     <img
                       src={item.shoppingCart.image}
                       alt="error"
                       style={{
                         height: 168,
-                        objectFit: "cover",
-                        borderRadius: "5%",
+                        objectFit: 'cover',
+                        borderRadius: '5%'
                       }}
                     />
                   </Col>
                   <Col
+                    span={5}
                     style={{
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center'
                     }}
                   >
                     <h5>{item.shoppingCart.name}</h5>
                   </Col>
                   <Col
+                    span={3}
                     style={{
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center'
                     }}
                   >
                     <span className="price">
@@ -110,7 +117,7 @@ const CartShopping = () => {
                         <NumberFormat
                           style={{ fontSize: 20 }}
                           value={item.shoppingCart.price}
-                          displayType={"text"}
+                          displayType={'text'}
                           thousandSeparator={true}
                           suffix="₫"
                         />
@@ -118,17 +125,17 @@ const CartShopping = () => {
                     </span>
                   </Col>
                   <Col
+                    span={2}
                     style={{
-                      width: 139,
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center'
                     }}
                   >
                     <InputNumber
                       min={1}
                       max={30}
                       value={item.shoppingCart.quantity}
-                      onChange={(value) => {
+                      onChange={value => {
                         dispatch(
                           changeQuantityCartAction(value, item.shoppingCart.id)
                         );
@@ -136,10 +143,28 @@ const CartShopping = () => {
                     />
                   </Col>
                   <Col
+                    span={3}
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: 156,
+                      display: 'flex',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <span className="price">
+                      <NumberFormat
+                        style={{ fontSize: 20 }}
+                        value={
+                          item.shoppingCart.price * item.shoppingCart.quantity
+                        }
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix="đ"
+                      />
+                    </span>
+                  </Col>
+                  <Col
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center'
                     }}
                   >
                     <span className="price">
@@ -149,33 +174,33 @@ const CartShopping = () => {
                           dispatch(removetCartAction(item.shoppingCart.id, 1))
                         }
                       >
-                        Xóa{" "}
+                        Xóa{' '}
                       </Button>
                     </span>
                   </Col>
-                  <Col style={{ display: "flex", alignItems: "center" }}></Col>
+                  <Col style={{ display: 'flex', alignItems: 'center' }}></Col>
                 </Row>
               </div>
             ))}
           </Col>
         </Row>
       </div>
-      <div style={{ clear: "both" }}></div>
+      <div style={{ clear: 'both' }}></div>
       {getTotal() > 0 && (
-        <h5 style={{ float: "right" }}>
+        <h5 style={{ float: 'right' }}>
           <NumberFormat
             value={getTotal()}
-            displayType={"text"}
+            displayType={'text'}
             thousandSeparator={true}
             suffix=" ₫"
-            prefix="Tổng Cộng: "
+            prefix="Total Cost: "
           />
         </h5>
       )}
       {/* Chỗ này import component checkout nhé cu phát */}
       {/* https://ant.design/components/form/ */}
       <Checkout />
-      <div style={{ clear: "both" }}></div>
+      <div style={{ clear: 'both' }}></div>
     </LayoutShopping>
   );
 };

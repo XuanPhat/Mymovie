@@ -1,16 +1,16 @@
-import React from "react";
-import { Menu, Layout, Image } from "antd";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import logo from "../../img/pet-shop.jpg";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import SearchIcon from "@material-ui/icons/Search";
-import Badge from "@material-ui/core/Badge";
+import React from 'react';
+import { Menu, Layout, Image } from 'antd';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import logo from '../../img/pet-shop.jpg';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import SearchIcon from '@material-ui/icons/Search';
+import Badge from '@material-ui/core/Badge';
 const { Header } = Layout;
 const HeaderShopping = () => {
   const numberCart = useSelector(
-    (state) => state.reducerCart.shoppingCart
+    state => state.reducerCart.shoppingCart
   ).length;
   return (
     <Header className="container_header">
@@ -21,8 +21,14 @@ const HeaderShopping = () => {
 
         <div className="menu_icon">
           <ul>
-            <li>HOME</li>
+            <Link to="/">
+              <li>HOME</li>
+            </Link>
+
             <li>PAGES</li>
+            <Link to="/order">
+              <li>ORDER</li>
+            </Link>
           </ul>
           <div className="icon">
             <div className="icon_item">
