@@ -4,52 +4,53 @@ import { createStructuredSelector } from 'reselect';
 import { CheckoutProduct, LoadingCheckout } from '../../reselect/reselect';
 import { useSelector } from 'react-redux';
 import { Table, Skeleton } from 'antd';
-
+import LayoutShopping from '../../components/Layout';
 const Order = () => {
   const columns = [
     {
       title: 'First Name',
       dataIndex: 'Firstname',
       key: 'Firstname'
+      // render: text => <h5 style={{ fontWeight: 'bold' }}>{text}</h5>
     },
     {
-      title: 'lastname',
+      title: 'Last Name',
       dataIndex: 'lastname',
       key: 'lastname'
     },
     {
-      title: 'address',
+      title: 'Address',
       dataIndex: 'address',
       key: 'address'
     },
     {
-      title: 'companyname',
+      title: 'Company Name',
       dataIndex: 'companyname',
       key: 'companyname'
     },
     {
-      title: 'country',
+      title: 'Country',
       dataIndex: 'country',
       key: 'country'
     },
     {
-      title: 'email',
+      title: 'Email',
       dataIndex: 'email',
       key: 'email'
     },
 
     {
-      title: 'phone',
+      title: 'Phone',
       dataIndex: 'phone',
       key: 'phone'
     },
     {
-      title: 'towncity',
+      title: 'Town city',
       dataIndex: 'towncity',
       key: 'towncity'
     },
     {
-      title: 'cart',
+      title: 'Cart',
       dataIndex: 'cart',
       key: 'cart',
       render: tags =>
@@ -58,7 +59,12 @@ const Order = () => {
         })
     },
     {
-      title: 'date',
+      title: 'Total price',
+      dataIndex: 'totalprice',
+      key: 'totalprice'
+    },
+    {
+      title: 'Date order',
       dataIndex: 'date',
       key: 'date'
     }
@@ -76,9 +82,9 @@ const Order = () => {
   console.log(Checkout);
 
   return (
-    <>
+    <LayoutShopping>
       <div style={{ textAlign: 'center' }}>
-        <h1>Order</h1>
+        <h1 style={{ fontWeight: 'bold', fontSize: 20 }}>Order</h1>
       </div>
       <Table
         columns={columns}
@@ -86,7 +92,7 @@ const Order = () => {
         rowKey="ID"
         hideSelectAll={true}
       />
-    </>
+    </LayoutShopping>
   );
 };
 

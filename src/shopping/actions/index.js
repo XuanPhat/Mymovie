@@ -108,7 +108,8 @@ export const Checkout = (
   phone,
   towncity,
   cart,
-  date
+  date,
+  totalprice
 ) => ({
   type: types.CHECKOUT_SUCCESS,
   ID,
@@ -121,5 +122,6 @@ export const Checkout = (
   phone,
   towncity,
   cart,
-  date
+  date,
+  totalprice
 });

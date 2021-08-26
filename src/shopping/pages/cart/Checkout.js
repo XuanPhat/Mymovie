@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 import '../../../shopping/styles/product.css';
-import { Row, Col, Form, Input, InputNumber } from 'antd';
+import { Row, Col, Form, Input, notification } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { Checkoutloading, Checkout } from '../../actions/index';
 import { ClearCart } from '../../actions';
 const CheckoutShopping = () => {
-  // const { Checkout } = useSelector(
-  //   createStructuredSelector({
-  //     Checkout: CheckoutProduct
-  //   })
-  // );
-
-  // const [firstname, setFirstname] = useState('');
-  // const [lastname, setLastname] = useState('');
-  // const [companyname, setCompanyname] = useState('');
-  // const [address, setAddress] = useState('');
-  // const [country, setCountry] = useState('');
-  // const [towncity, setTowncity] = useState('');
-  // const [phone, setPhone] = useState('');
-  // const [emailaddress, setEmailaddress] = useState('');
   const productCarts = useSelector(state => state.reducerCart.shoppingCart);
   const getTotal = () => {
     // eslint-disable-next-line no-lone-blocks
@@ -36,6 +22,7 @@ const CheckoutShopping = () => {
   console.log(new Date().toUTCString());
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+
   function guidGenerator() {
     var S4 = function () {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -55,32 +42,52 @@ const CheckoutShopping = () => {
       S4()
     );
   }
-
+  const openNotificationCheckout = type => {
+    notification[type]({
+      message: 'Checkout success',
+      description: 'you can view order'
+    });
+  };
+  const ErrorCheckout = type => {
+    notification[type]({
+      message: 'You do not choose a cart'
+      // description: 'you '
+    });
+  };
   const onFinish = values => {
     console.log('Success:', values);
     dispatch(Checkoutloading(true));
-    dispatch(
-      Checkout(
-        guidGenerator(),
-        values.Firstname,
-        values.address,
-        values.companyname,
-        values.country,
-        values.email,
-        values.lastname,
-        values.phone,
-        values.towncity,
-        productCarts,
-        new Date().toLocaleString()
-      )
-    );
-    dispatch(Checkoutloading(false));
-    form.resetFields();
-    dispatch(ClearCart());
+    if (productCarts.length === 0) {
+      ErrorCheckout('error');
+    } else {
+      dispatch(
+        Checkout(
+          guidGenerator(),
+          values.Firstname,
+          values.address,
+          values.companyname,
+          values.country,
+          values.email,
+          values.lastname,
+          values.phone,
+          values.towncity,
+          productCarts,
+          new Date().toLocaleString(),
+          getTotal()
+        )
+      );
+      dispatch(Checkoutloading(false));
+      form.resetFields();
+      openNotificationCheckout('success');
+      dispatch(ClearCart());
+    }
   };
 
   const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    console.log('Failed:', errorInfo.errorFields.length);
+    if (errorInfo.errorFields.length === 0) {
+      openNotificationCheckout('success');
+    }
   };
 
   return (
@@ -91,7 +98,7 @@ const CheckoutShopping = () => {
       onFinishFailed={onFinishFailed}
     >
       <Row style={{ marginTop: 100 }}>
-        <Col offset={3} span={24}>
+        <Col offset={3} span={20}>
           <Row>
             <Col style={{ position: 'relative' }}>
               <Row>
@@ -106,9 +113,6 @@ const CheckoutShopping = () => {
                   style={{ paddingRight: 20 }}
                 >
                   <Row style={{ position: 'relative' }}>
-                    {/* <div className="Validate">
-                      <h6>You missing firstname</h6>
-                    </div> */}
                     <label>FIRST NAME</label>
                     <Form.Item
                       name="Firstname"
@@ -120,11 +124,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setFirstname(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
 
@@ -140,11 +140,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setCompanyname(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
 
@@ -160,11 +156,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setTowncity(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
 
@@ -181,11 +173,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setEmailaddress(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
                 </Col>
@@ -202,11 +190,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setLastname(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
 
@@ -222,11 +206,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setAddress(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
 
@@ -242,11 +222,7 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <Input
-                      // onChange={e => {
-                      //   setCountry(e.target.value);
-                      // }}
-                      />
+                      <Input />
                     </Form.Item>
                   </Row>
 
@@ -262,7 +238,8 @@ const CheckoutShopping = () => {
                       ]}
                       style={{ width: 310 }}
                     >
-                      <InputNumber width={200} min={1} max={10} />
+                      {/* <InputNumber min={1} max={10} size="small" /> */}
+                      <Input type="Number" />
                     </Form.Item>
                   </Row>
                 </Col>
@@ -274,14 +251,20 @@ const CheckoutShopping = () => {
               </Row>
               <Row style={{ marginTop: 54 }}>
                 <div className="border_checkout">
-                  {productCarts.map((item, index) => (
-                    <div className="order_detail" key={index}>
-                      <span>{item.shoppingCart.name}</span>
-                      <span>
-                        {item.shoppingCart.price * item.shoppingCart.quantity}
-                      </span>
-                    </div>
-                  ))}
+                  {productCarts.length === 0 ? (
+                    <h3 style={{ textAlign: 'center', color: 'red' }}>
+                      No product in cart
+                    </h3>
+                  ) : (
+                    productCarts.map((item, index) => (
+                      <div className="order_detail" key={index}>
+                        <span>{item.shoppingCart.name}</span>
+                        <span>
+                          {item.shoppingCart.price * item.shoppingCart.quantity}
+                        </span>
+                      </div>
+                    ))
+                  )}
 
                   <div className="order_detail">
                     <span

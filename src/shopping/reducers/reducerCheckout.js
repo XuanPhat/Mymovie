@@ -26,7 +26,8 @@ export const reducerCheckout = (state = initState, action) => {
             phone: action.phone,
             towncity: action.towncity,
             cart: action.cart,
-            date: action.date
+            date: action.date,
+            totalprice: action.totalprice
           }
         ],
         loading: false

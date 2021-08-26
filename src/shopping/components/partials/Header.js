@@ -51,7 +51,7 @@ const HeaderShopping = () => {
         <div className="menu_icon">
           <ul>
             <li>
-              <a href="/">HOME</a>
+              <Link to="/">HOME</Link>
             </li>
             <li>
               <ClickAwayListener onClickAway={handleClickAway}>
@@ -75,6 +75,10 @@ const HeaderShopping = () => {
                   ) : null}
                 </div>
               </ClickAwayListener>
+            </li>
+            <li>
+              {/* <a href="/order">ORDER</a> */}
+              <Link to="/order">ORDER</Link>
             </li>
           </ul>
 
