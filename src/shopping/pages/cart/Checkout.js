@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import '../../../shopping/styles/product.css';
-import { Row, Col, Form, Input, notification } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
-import { Checkoutloading, Checkout } from '../../actions/index';
-import { ClearCart } from '../../actions';
+import React from "react";
+import "../../../shopping/styles/product.css";
+import { Row, Col, Form, Input, notification } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { Checkoutloading, Checkout } from "../../actions/index";
+import { ClearCart } from "../../actions";
+import NumberFormat from "react-number-format";
+
 const CheckoutShopping = () => {
-  const productCarts = useSelector(state => state.reducerCart.shoppingCart);
+  const productCarts = useSelector((state) => state.reducerCart.shoppingCart);
   const getTotal = () => {
     // eslint-disable-next-line no-lone-blocks
     {
@@ -19,7 +21,6 @@ const CheckoutShopping = () => {
       return result;
     }
   };
-  console.log(new Date().toUTCString());
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
@@ -30,35 +31,35 @@ const CheckoutShopping = () => {
     return (
       S4() +
       S4() +
-      '-' +
+      "-" +
       S4() +
-      '-' +
+      "-" +
       S4() +
-      '-' +
+      "-" +
       S4() +
-      '-' +
+      "-" +
       S4() +
       S4() +
       S4()
     );
   }
-  const openNotificationCheckout = type => {
+  const openNotificationCheckout = (type) => {
     notification[type]({
-      message: 'Checkout success',
-      description: 'you can view order'
+      message: "Checkout success",
+      description: "you can view order",
     });
   };
-  const ErrorCheckout = type => {
+  const ErrorCheckout = (type) => {
     notification[type]({
-      message: 'You do not choose a cart'
+      message: "You do not choose a cart",
       // description: 'you '
     });
   };
-  const onFinish = values => {
-    console.log('Success:', values);
+  const onFinish = (values) => {
+    console.log("Success:", values);
     dispatch(Checkoutloading(true));
     if (productCarts.length === 0) {
-      ErrorCheckout('error');
+      ErrorCheckout("error");
     } else {
       dispatch(
         Checkout(
@@ -78,15 +79,14 @@ const CheckoutShopping = () => {
       );
       dispatch(Checkoutloading(false));
       form.resetFields();
-      openNotificationCheckout('success');
+      openNotificationCheckout("success");
       dispatch(ClearCart());
     }
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo.errorFields.length);
+  const onFinishFailed = (errorInfo) => {
     if (errorInfo.errorFields.length === 0) {
-      openNotificationCheckout('success');
+      openNotificationCheckout("success");
     }
   };
 
@@ -98,13 +98,13 @@ const CheckoutShopping = () => {
       onFinishFailed={onFinishFailed}
     >
       <Row style={{ marginTop: 100 }}>
-        <Col offset={3} span={20}>
+        <Col offset={6} span={12}>
           <Row>
-            <Col style={{ position: 'relative' }}>
-              <Row>
+            <Col style={{ position: "relative" }}>
+              <Row style={{ justifyContent: "center" }}>
                 <h3>BILLING DETAILS</h3>
               </Row>
-              <Row style={{ marginTop: 54 }}>
+              <Row style={{ justifyContent: "center" }}>
                 <Col
                   md={10}
                   sm={20}
@@ -112,15 +112,15 @@ const CheckoutShopping = () => {
                   xl={10}
                   style={{ paddingRight: 20 }}
                 >
-                  <Row style={{ position: 'relative' }}>
+                  <Row style={{ position: "relative" }}>
                     <label>FIRST NAME</label>
                     <Form.Item
                       name="Firstname"
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your first name!'
-                        }
+                          message: "Please input your first name!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -135,8 +135,8 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your Company Name!'
-                        }
+                          message: "Please input your Company Name!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -151,8 +151,8 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your town city!'
-                        }
+                          message: "Please input your town city!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -167,9 +167,9 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          type: 'email',
-                          message: 'The input is not valid E-mail!'
-                        }
+                          type: "email",
+                          message: "The input is not valid E-mail!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -185,8 +185,8 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your last name!'
-                        }
+                          message: "Please input your last name!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -201,8 +201,8 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your address!'
-                        }
+                          message: "Please input your address!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -217,8 +217,8 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your country!'
-                        }
+                          message: "Please input your country!",
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -233,9 +233,9 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Not valid phone number',
-                          pattern: new RegExp('^[0-9-+]{9,15}$')
-                        }
+                          message: "Not valid phone number",
+                          pattern: new RegExp("^[0-9-+]{9,15}$"),
+                        },
                       ]}
                       style={{ width: 310 }}
                     >
@@ -246,22 +246,39 @@ const CheckoutShopping = () => {
                 </Col>
               </Row>
             </Col>
-            <Col>
-              <Row>
+            <Col span={12} offset={6}>
+              <Row style={{ justifyContent: "center" }}>
                 <h3>YOUR ORDER</h3>
               </Row>
-              <Row style={{ marginTop: 54 }}>
+              <Row
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <div className="border_checkout">
                   {productCarts.length === 0 ? (
-                    <h3 style={{ textAlign: 'center', color: 'red' }}>
+                    <h3 style={{ textAlign: "center", color: "red" }}>
                       No product in cart
                     </h3>
                   ) : (
                     productCarts.map((item, index) => (
                       <div className="order_detail" key={index}>
-                        <span>{item.shoppingCart.name}</span>
                         <span>
-                          {item.shoppingCart.price * item.shoppingCart.quantity}
+                          {item.shoppingCart.name} x
+                          <small>{item.shoppingCart.quantity}</small>
+                        </span>
+                        <span>
+                          <NumberFormat
+                            style={{ fontSize: 20 }}
+                            value={
+                              item.shoppingCart.price *
+                              item.shoppingCart.quantity
+                            }
+                            displayType={"text"}
+                            thousandSeparator={true}
+                            suffix="₫"
+                          />
                         </span>
                       </div>
                     ))
@@ -271,7 +288,7 @@ const CheckoutShopping = () => {
                     <span
                       style={{
                         fontSize: 18,
-                        fontWeight: 'bold'
+                        fontWeight: "bold",
                       }}
                     >
                       TOTAL COST
@@ -279,17 +296,23 @@ const CheckoutShopping = () => {
                     <span
                       style={{
                         fontSize: 18,
-                        fontWeight: 'bold'
+                        fontWeight: "bold",
                       }}
                     >
-                      {getTotal()}
+                      <NumberFormat
+                        style={{ fontSize: 20 }}
+                        value={getTotal()}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        suffix="₫"
+                      />
                     </span>
                   </div>
                   <div
                     style={{
                       padding: 10,
-                      display: 'flex',
-                      justifyContent: 'flex-end'
+                      display: "flex",
+                      justifyContent: "center",
                     }}
                     className="container_button"
                   >
@@ -298,10 +321,10 @@ const CheckoutShopping = () => {
                       className="button_order"
                       style={{
                         width: 175,
-                        height: 44
+                        height: 44,
                       }}
                     >
-                      PLACE ORDER
+                      CHECKOUT
                     </button>
                   </div>
                 </div>
