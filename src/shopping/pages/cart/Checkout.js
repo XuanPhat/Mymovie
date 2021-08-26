@@ -233,13 +233,14 @@ const CheckoutShopping = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your phone!'
+                          message: 'Not valid phone number',
+                          pattern: new RegExp('^[0-9-+]{9,15}$')
                         }
                       ]}
                       style={{ width: 310 }}
                     >
                       {/* <InputNumber min={1} max={10} size="small" /> */}
-                      <Input type="Number" />
+                      <Input />
                     </Form.Item>
                   </Row>
                 </Col>
